@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2019-2020 LG Electronics, Inc.
+ * Copyright (c) 2019-2021 LG Electronics, Inc.
  *
  * This software contains code licensed as described in LICENSE.
  *
@@ -12,8 +12,6 @@ using Simulator.Utilities;
 using UnityEngine;
 using Simulator.Sensors.UI;
 using System.Collections.Generic;
-using System.Collections;
-using Simulator.Analysis;
 
 namespace Simulator.Sensors
 {
@@ -28,19 +26,19 @@ namespace Simulator.Sensors
         float NextSend;
 
         [AnalysisMeasurement(MeasurementType.Velocity)]
-        private float MaxSpeed = 0;
+        public float MaxSpeed = 0;
 
         [AnalysisMeasurement(MeasurementType.Input)]
-        private float MaxThrottle = 0;
+        public float MaxThrottle = 0;
 
         [AnalysisMeasurement(MeasurementType.Input)]
-        private float MaxBrake = 0;
+        public float MaxBrake = 0;
 
         [AnalysisMeasurement(MeasurementType.Angle)]
-        private float MaxSteering = 0;
+        public float MaxSteering = 0;
 
         [AnalysisMeasurement(MeasurementType.Gear)]
-        private int GearUsed => Mathf.RoundToInt(Dynamics.CurrentGear);
+        public int GearUsed => Mathf.RoundToInt(Dynamics.CurrentGear);
 
         BridgeInstance Bridge;
         Publisher<CanBusData> Publish;

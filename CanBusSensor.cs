@@ -106,8 +106,8 @@ namespace Simulator.Sensors
                 Steering = Dynamics.SteerInput,
 
                 ParkingBrake = Dynamics.HandBrake,
-                HighBeamSignal = Actions.CurrentHeadLightState == VehicleActions.HeadLightState.HIGH,
-                LowBeamSignal = Actions.CurrentHeadLightState == VehicleActions.HeadLightState.LOW,
+                HighBeamSignal = Actions.CurrentHeadLightState == HeadLightState.HIGH,
+                LowBeamSignal = Actions.CurrentHeadLightState == HeadLightState.LOW,
                 HazardLights = Actions.HazardLights,
                 FogLights = Actions.FogLights,
 

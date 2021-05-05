@@ -43,7 +43,6 @@ namespace Simulator.Sensors
         BridgeInstance Bridge;
         Publisher<CanBusData> Publish;
 
-        Rigidbody RigidBody;
         IVehicleDynamics Dynamics;
         VehicleActions Actions;
         MapOrigin MapOrigin;
@@ -54,7 +53,6 @@ namespace Simulator.Sensors
 
         private void Awake()
         {
-            RigidBody = GetComponentInParent<Rigidbody>();
             Actions = GetComponentInParent<VehicleActions>();
             Dynamics = GetComponentInParent<IVehicleDynamics>();
             MapOrigin = MapOrigin.Find();
@@ -127,7 +125,7 @@ namespace Simulator.Sensors
                 Altitude = gps.Altitude,
 
                 Orientation = orientation,
-                Velocity = RigidBody.velocity,
+                Velocity = Dynamics.Velocity,
             };
 
             if (Bridge != null && Bridge.Status == Status.Connected)

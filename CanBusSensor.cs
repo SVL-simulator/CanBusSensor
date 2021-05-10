@@ -49,7 +49,8 @@ namespace Simulator.Sensors
 
         CanBusData msg;
 
-        public override SensorDistributionType DistributionType => SensorDistributionType.LowLoad;
+        public override SensorDistributionType DistributionType => SensorDistributionType.MainOrClient;
+        public override float PerformanceLoad { get; } = 0.1f;
 
         private void Awake()
         {
@@ -64,9 +65,14 @@ namespace Simulator.Sensors
             Publish = bridge.AddPublisher<CanBusData>(Topic);
         }
 
-        public void Start()
+        protected override void Initialize()
         {
             NextSend = Time.time + 1.0f / Frequency;
+        }
+
+        protected override void Deinitialize()
+        {
+            
         }
 
         public void Update()

@@ -22,8 +22,8 @@ namespace Simulator.Sensors
         [Range(1f, 100f)]
         public float Frequency = 10.0f;
 
-        uint SendSequence;
-        float NextSend;
+        private uint SendSequence;
+        private float NextSend;
 
         [AnalysisMeasurement(MeasurementType.Velocity)]
         public float MaxSpeed = 0;
@@ -40,14 +40,14 @@ namespace Simulator.Sensors
         [AnalysisMeasurement(MeasurementType.Gear)]
         public int GearUsed => Mathf.RoundToInt(Dynamics.CurrentGear);
 
-        BridgeInstance Bridge;
-        Publisher<CanBusData> Publish;
+        private BridgeInstance Bridge;
+        private Publisher<CanBusData> Publish;
 
-        IVehicleDynamics Dynamics;
-        VehicleActions Actions;
-        MapOrigin MapOrigin;
+        private IVehicleDynamics Dynamics;
+        private VehicleActions Actions;
+        private MapOrigin MapOrigin;
 
-        CanBusData msg;
+        private CanBusData msg;
 
         public override SensorDistributionType DistributionType => SensorDistributionType.MainOrClient;
         public override float PerformanceLoad { get; } = 0.1f;
@@ -72,7 +72,7 @@ namespace Simulator.Sensors
 
         protected override void Deinitialize()
         {
-            
+            //
         }
 
         public void Update()
@@ -91,7 +91,7 @@ namespace Simulator.Sensors
             float speed = Dynamics.Speed;
             MaxSpeed = Mathf.Max(MaxSpeed, speed);
 
-            var gps = MapOrigin.GetGpsLocation(transform.position);
+            var gps = MapOrigin.PositionToGpsLocation(transform.position);
 
             var orientation = transform.rotation;
             orientation.Set(-orientation.z, orientation.x, -orientation.y, orientation.w); // converting to right handed xyz
